@@ -10,6 +10,7 @@ include 'conn.php';
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
     <title>App web PHP</title>
 </head>
 <body>
@@ -68,7 +69,7 @@ include 'conn.php';
                     <td><?php echo $mostrar["precio"]?></td>
                     <td><?php echo $mostrar["stock"]?></td>
                     <td>
-                        <button class="btn btn-danger" onclick="eliminarProducto(<?php echo $mostrar['id']; ?>)">Eliminar</button>
+                        <button class="btn btn-danger" onclick="confirmarEliminacion(<?php echo $mostrar['id']; ?>)">Eliminar</button>
                     </td>
                     <td>
                         <button class="btn btn-warning"><a class="link" href="edit.php?id=<?php echo $mostrar['id']; ?>">Editar</a></button>
@@ -80,32 +81,16 @@ include 'conn.php';
             </tbody>
         </table>
     </div>
+
+    <script>
+        function confirmarEliminacion(id) {
+            if (confirm("¿Estás seguro de que deseas eliminar este producto?")) {
+                window.location.href = `delete.php?id=${id}`;
+            }
+        }
+    </script>
 </body>
 </html>
-
-<script>
-    function eliminarProducto(id) {
-        if (confirm("¿Estás seguro de que deseas eliminar este producto?")) {
-            fetch(`delete.php?id=${id}`, {
-                method: 'DELETE', // Usar el método DELETE
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: `id=${id}` // Enviar el ID en el cuerpo de la solicitud
-            })
-            .then(response => {
-                if (response.ok) {
-                    window.location.href = 'index.php'; // Recargar la página después de eliminar
-                } else {
-                    alert("Error al eliminar el producto.");
-                }
-            })
-            .catch(error => {
-                console.error("Error:", error);
-            });
-        }
-    }
-</script>
 
 <?php
 if (isset($_POST['registro'])) {

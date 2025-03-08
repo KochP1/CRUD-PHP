@@ -1,24 +1,16 @@
 <?php
-include 'index.php';
+include 'conn.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
-    // Obtener el ID del producto desde la URL
-    parse_str(file_get_contents("php://input"), $params);
-    $id = $params['id'];
+if(isset($_GET['id'])) {
+    $id = $_GET['id'];
 
-    // Eliminar el producto
-    $sql = "DELETE FROM producto WHERE id = $id";
+    $sql = "DELETE FROM `producto` WHERE id=$id";
     $result = mysqli_query($enlace, $sql);
 
     if ($result) {
-        http_response_code(200); // Respuesta exitosa
-        echo "Producto eliminado correctamente.";
+        header('Location: index.php');
     } else {
-        http_response_code(500); // Error del servidor
-        echo "Error al eliminar el producto: " . mysqli_error($enlace);
+        echo "Error al eliminar producto";
     }
-} else {
-    http_response_code(405); // Método no permitido
-    echo "Método no permitido.";
 }
 ?>
