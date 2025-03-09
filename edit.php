@@ -16,30 +16,9 @@ $mostrar = mysqli_fetch_array($result);
     <link rel="stylesheet" href="styles.css">
     <title>Editar registro</title>
 
-    <style>
-        .edit-form{
-            display: flex;
-            flex-direction: column;
-            margin: auto;
-            margin-top: 30px;
-            width: 30vw;
-            border-radius: 10px;
-            box-shadow: 0px 0px 6px 0px #fff;
-        }
-
-        .edit-form div{
-            width: 100% !important;
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: center;
-        }
-
-        .form-control, .form-label{
-            width: 90%;
-        }
-    </style>
 </head>
 <body>
+<div class="title__container"><h1>Editar producto</h1></div>
 <form method="post" class="edit-form">
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Nombre</label>
@@ -57,7 +36,8 @@ $mostrar = mysqli_fetch_array($result);
     <label for="exampleInputPassword1" class="form-label">Stock</label>
     <input type="number" class="form-control" name="stock" value="<?php echo $mostrar["stock"]?>">
   </div>
-  <button type="submit" class="btn btn-primary" name="registro">Editar</button>
+  <button type="submit" class="btn btn-primary btn-edit" name="registro">Editar</button>
+  <div class="link__container"><a href="index.php">Regresar</a></div>
 </form>
 </body>
 </html>

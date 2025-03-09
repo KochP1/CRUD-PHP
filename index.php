@@ -7,38 +7,37 @@ include 'conn.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles.css">
     <title>App web PHP</title>
 </head>
 <body>
+    <div class="title__container"><h1>Inventario de productos</h1></div>
     <div class="container">
         <form action="#" method="post" class="form" name="productos_php">
             <div class="input__container">
-                <label for="name">Nombre</label>
-                <input type="text" name="name">
+                <label for="name" class="regist-label">Nombre</label>
+                <input type="text" name="name" class="regist-input">
             </div>
 
             <div class="input__container">
-                <label for="descripcion">Descripción</label>
-                <input type="text" name="descripcion" id="descripcion">
+                <label for="descripcion" class="regist-label">Descripción</label>
+                <input type="text" name="descripcion" id="descripcion" class="regist-input">
             </div>
 
             <div class="input__container">
-                <label for="precio">Precio</label>
-                <input type="number" name="precio" id="precio" step="any">
+                <label for="precio" class="regist-label">Precio</label>
+                <input type="number" name="precio" id="precio" step="any" class="regist-input">
             </div>
 
             <div class="input__container">
-                <label for="stock">Stock</label>
-                <input type="number" name="stock" id="stock">
+                <label for="stock" class="regist-label">Stock</label>
+                <input type="number" name="stock" id="stock" class="regist-input">
             </div>
 
-            <div class="input__container">
-                <label for="enviar">Registro</label>
-                <button type="submit" name="registro" class="btn btn-primary">Enviar</button>
+            <div class="input__container btn__container">
+                <label for="enviar" class="regist-label">Registro</label>
+                <button type="submit" name="registro" class="btn btn-primary regist-input">Enviar</button>
             </div>
         </form>
     </div>
@@ -89,6 +88,7 @@ include 'conn.php';
             }
         }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
 
