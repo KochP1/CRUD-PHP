@@ -18,7 +18,7 @@ $mostrar = mysqli_fetch_array($result);
 
 </head>
 <body>
-<div class="title__container"><h1>Editar producto</h1></div>
+<div class="title__container edit-title"><h1>Editar producto</h1></div>
 <form method="post" class="edit-form">
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Nombre</label>
@@ -49,13 +49,19 @@ if (isset($_POST['registro'])) {
     $precio = mysqli_real_escape_string($enlace, $_POST['precio']);
     $stock = mysqli_real_escape_string($enlace, $_POST['stock']);
 
-    $insertDatos = "UPDATE `producto` SET nombre='$nombre', descripcion='$descripcion', precio='$precio', stock='$stock' WHERE id=$id";
+    if ($nombre === "" or $descripcion === "" or $precio === "" or $stock === "") {
+      echo "Todos los datos son obligatorios";
+    } else if (strlen($nombre) > 20 or strlen($descripcion) > 50  ) {
+      echo "Nombre(max 20 caracteres) o descripción(max 50 caracteres) muy largo";
+    } else {
+      $insertDatos = "UPDATE `producto` SET nombre='$nombre', descripcion='$descripcion', precio='$precio', stock='$stock' WHERE id=$id";
     $ejecutarInsert = mysqli_query($enlace, $insertDatos);
 
     if ($ejecutarInsert) {
         header('Location: index.php');
     } else {
-        echo "Error al editar los datos: " . mysqli_error($enlace);
+        echo "Error MySql";
+    }
     }
 }
 ?>

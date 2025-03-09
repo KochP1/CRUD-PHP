@@ -99,13 +99,19 @@ if (isset($_POST['registro'])) {
     $precio = mysqli_real_escape_string($enlace, $_POST['precio']);
     $stock = mysqli_real_escape_string($enlace, $_POST['stock']);
 
-    $insertDatos = "INSERT INTO producto (nombre, descripcion, precio, stock) VALUES ('$nombre', '$descripcion', '$precio', '$stock')";
-    $ejecutarInsert = mysqli_query($enlace, $insertDatos);
+    if ($nombre === "" or $descripcion === "" or $precio === "" or $stock === "") {
+        echo "Todos los datos son obligatorios";
+    } else if (strlen($nombre) > 20 or strlen($descripcion) > 50  ) {
+        echo "Nombre(max 20 caracteres) o descripción(max 50 caracteres) muy largo";
+    }else {
+        $insertDatos = "INSERT INTO producto (nombre, descripcion, precio, stock) VALUES ('$nombre', '$descripcion', '$precio', '$stock')";
+        $ejecutarInsert = mysqli_query($enlace, $insertDatos);
 
-    if ($ejecutarInsert) {
-        echo 'Caraota';
-    } else {
-        echo "Error al insertar los datos: " . mysqli_error($enlace);
+        if ($ejecutarInsert) {
+            header('Location: index.php');
+        } else {
+            echo "Error MySql";
+        }
     }
 }
 ?>
